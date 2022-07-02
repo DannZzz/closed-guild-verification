@@ -5,18 +5,22 @@
   "main": "index.js",
   "scripts": {
     "test": "ts-node src/index.ts",
-    "build": "tsc" 
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^0.15.0",
+    "@discordjs/opus": "^0.5.3",
     "@discordjs/rest": "^0.5.0",
     "client-discord": "^1.0.7",
     "common-tags": "^1.8.2",
     "discord-api-types": "^0.34.0",
+    "discord-player": "^5.2.2",
     "discord.js": "^13.8.0",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^4.4.1",
     "mongoose": "^6.4.0",
     "ms": "^2.1.3"
   },

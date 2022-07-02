@@ -7,7 +7,7 @@ import SlashCommand from "../../typing/SlashCommand";
 export default new SlashCommand({
     uniqueName: "password-settings",
     data: new SlashCommandBuilder()
-        .setDMPermission(false)
+        
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .setName("password")
         .setDescription("посмотреть пароли")

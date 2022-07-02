@@ -6,7 +6,7 @@ import SlashCommand from "../../typing/SlashCommand";
 export default new SlashCommand ({
     uniqueName: 'set-verify-role',
     data: new SlashCommandBuilder()
-                .setDMPermission(false)
+                
                 .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
                 .setName("set-verify-role")
                 .addRoleOption(o => o

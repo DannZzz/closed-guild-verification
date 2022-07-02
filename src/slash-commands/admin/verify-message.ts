@@ -7,7 +7,7 @@ import SlashCommand from "../../typing/SlashCommand";
 export default new SlashCommand({
     uniqueName: "send-verify-message",
     data: new SlashCommandBuilder()
-        .setDMPermission(false)
+        
         .setName("verify-message")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .setDescription("send verifying message"),

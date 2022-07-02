@@ -1,4 +1,4 @@
-import { Interaction, Message } from "discord.js";
+import { GuildMember, Interaction, Message } from "discord.js";
 import Models from "../database/db";
 import { _SlashCommandChest } from "../handler";
 import Chest from "../typing/Chest";
@@ -17,6 +17,7 @@ export default new Event({
             if (cd) return;
             const guild = await (new Models("Guild")).findOrCreate(interaction.guildId);
             const user = await (new Models("User")).findOrCreate(interaction.user.id);
+            if (command.voiceChannel && !(interaction.member as GuildMember).voice.channel) return interaction.reply({content: "U need to be in voice channel to use this command!", ephemeral: true});
             command.execute({interaction, thisGuild: guild, thisUser: user, client, command: interaction.commandName, Embed: new EmbedConstructor({main: client.colors.main, error: client.colors.error, success: client.colors.success}), options: interaction.options})
         }
     }

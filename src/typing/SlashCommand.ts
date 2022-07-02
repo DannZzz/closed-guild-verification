@@ -31,7 +31,10 @@ export default class SlashCommand {
      * Is command disabled
      */
     disabled?: boolean;
-
+    /**
+     * Is required member to be in voice channel
+     */
+    voiceChannel?: boolean;
     /**
      * Execute function
      */

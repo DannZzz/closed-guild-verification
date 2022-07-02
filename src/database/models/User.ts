@@ -26,8 +26,10 @@ export interface User {
      * Global cooldowns
      */
     cooldowns?: {[k in CooldownTypes]?: Date};
-
-    
+    /**
+     * Custom playlist
+     */
+    playlist?: Array<string>;
 }
 
 export const User = mongoose.model("user", new mongoose.Schema<User>({
@@ -36,4 +38,5 @@ export const User = mongoose.model("user", new mongoose.Schema<User>({
     secondary: { type: Number, default: 0 },
     isBlocked: { type: Boolean, default: false },
     cooldowns: { type: Object, default: {} },
+    playlist: { type: Array as any, default: [] },
 }))
