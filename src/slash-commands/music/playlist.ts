@@ -41,6 +41,8 @@ export default new SlashCommand ({
                 .interactionReply(interaction)
         } else if(cmd === "play") {
             if (playlist.length === 0 ) return interaction.reply("U dont have any songs in playlist");
+            await interaction.deferReply();
+            playlist.forEach(async (query, i) => {
             const queue = player.createQueue(interaction.guild, {
                 metadata: {
                     channel: interaction.channel
@@ -54,8 +56,8 @@ export default new SlashCommand ({
                 queue.destroy();
                 return await interaction.reply({ content: "I can't join to your channel!", ephemeral: true });
             }
-            await interaction.deferReply();
-            playlist.forEach(async (query, i) => {
+            
+            
                 const track = await player.search(query, {
                     requestedBy: interaction.user
                 }).then(x => x.tracks[0]);
