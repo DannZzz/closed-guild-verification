@@ -56,15 +56,15 @@ export default new SlashCommand ({
             }
             await interaction.deferReply();
             playlist.forEach(async (query, i) => {
-                const track = await client.player.search(query, {
+                const track = await player.search(query, {
                     requestedBy: interaction.user
                 }).then(x => x.tracks[0]);
 
                 if (!track) return await interaction.followUp({ content: `❌ | Song **${query}** not found!` });
                 
-                queue.addTrack(track)
+                queue.play(track)
             })
-            queue.play();
+            
             interaction.followUp({ content: `⏱️ | Looking for **${playlist[0]}**!` });        
         } else if (cmd === "add") {
             const queue = player.getQueue(interaction.guild);
