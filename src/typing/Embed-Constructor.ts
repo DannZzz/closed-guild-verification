@@ -103,6 +103,10 @@ export default class EmbedConstructor {
         return await interaction.reply({...options, embeds: [this._embed]})
     }
 
+    async interactionFollow<T extends CommandInteraction | ButtonInteraction | SelectMenuInteraction | ModalSubmitInteraction>(interaction: T, options: Omit<InteractionReplyOptions, "embeds"> = {}) {
+        return await interaction.followUp({...options, embeds: [this._embed]})
+    }
+
     async send(channel: TextChannel | DMChannel | PartialDMChannel | VoiceChannel | NewsChannel | ThreadChannel, options: MessageOptions = {}, deleteAfter: number = null): Promise<Message> {
         const msg = await channel.send({...options, embeds: [...(options?.embeds || []), this._embed]})
         if (deleteAfter) setTimeout(() => msg.delete(), deleteAfter);
