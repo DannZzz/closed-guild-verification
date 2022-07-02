@@ -61,16 +61,15 @@ export default new SlashCommand ({
                 }).then(x => x.tracks[0]);
 
                 if (!track) return await interaction.followUp({ content: `❌ | Song **${query}** not found!` });
-                if (i !== 0) {
-                    queue.addTrack(track)
-                } else {
-                    queue.play(track)
-                    interaction.followUp({ content: `⏱️ | Looking for **${track.title}**!` });
-                }
-            })            
+                
+                queue.addTrack(track)
+            })
+            queue.play();
+            interaction.followUp({ content: `⏱️ | Looking for **${playlist[0]}**!` });        
         } else if (cmd === "add") {
             const queue = player.getQueue(interaction.guild);
             if ((!queue || !queue.current) && !songName) return interaction.reply("There are no songs to add!");
+            await interaction.deferReply();
             var song: Track;
             if (songName) {
                 const track = await client.player.search(songName, {
@@ -83,7 +82,7 @@ export default new SlashCommand ({
             await (new Models('User')).model.updateOne({_id: interaction.user.id}, {$push: {playlist: song.title}});
             Embed
                 .setSuccess(`Song \`${song.title}\` was successfully added to the playlist!`)
-                .interactionReply(interaction);
+                .interactionFollow(interaction);
         } else if (cmd === "remove") {
             if (number <= 0 && number > playlist.length) return interaction.reply("Song was not found!");
 
